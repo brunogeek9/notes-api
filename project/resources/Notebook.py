@@ -7,11 +7,11 @@ notebook_schema = NotebookSchema()
 class NotebookResource(Resource):
     def get(self):
         notebooks = Notebook.query.all()
-        print('bla bla')
-        print(notebooks)
+        notebooks = notebooks_schema.dump(notebooks).data
+
         notebooks = notebooks_schema.dump(notebooks).data
         return {'status': 'success', 'data': notebooks}, 200
-    
+
     def post(self):
         json_data = request.get_json(force=True)
         if not json_data:
@@ -27,9 +27,9 @@ class NotebookResource(Resource):
             title=json_data['title']
             )
 
-        db.session.add(category)
+        db.session.add(notebook)
         db.session.commit()
 
-        result = notebook.dump(notebook).data
+        result = notebook_schema.dump(notebook).data
 
         return { "status": 'success', 'data': result }, 201

@@ -8,4 +8,6 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 #url for postgress database
 #SQLALCHEMY_DATABASE_URI = "postgresql://username:password@localhost/database_name"
 #url for sqlite dabatase
-SQLALCHEMY_DATABASE_URI = "sqlite:///notes.db"
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(os.path.join(project_dir, "notes.db"))
+SQLALCHEMY_DATABASE_URI = database_file

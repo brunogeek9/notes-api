@@ -15,12 +15,16 @@ db = SQLAlchemy()
 #         nullable=False)
 
 class Notebook(db.Model):
-    #__tablename__ = 'notebook'
+    __tablename__ = 'notebook'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), nullable=False)
     # notes = db.relationship('Note', backref='Notebook', lazy=True)
+    # def __init__(self,id,title):
+    #     self.id = id
+    #     self.title = title
+        
     def __repr__(self):
-        return "<Title: {} id : >".format(self.title,self.id)
+        return "<Title: {} id {}: >".format(self.title,self.id)
 # class NoteSchema(ma.Schema):
 #     id = fields.Integer()
 #     title = fields.String(required=True)
